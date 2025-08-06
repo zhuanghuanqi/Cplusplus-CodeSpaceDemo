@@ -83,3 +83,7 @@ imgui-web-demo/build/CMakeFiles/imgui_demo.dir/src/imgui/backends/imgui_impl_glf
 imgui-web-demo/build/CMakeFiles/imgui_demo.dir/src/imgui/backends/imgui_impl_glfw.cpp.o.d
 imgui-web-demo/build/CMakeFiles/imgui_demo.dir/src/imgui/backends/imgui_impl_opengl3.cpp.o
 imgui-web-demo/build/CMakeFiles/imgui_demo.dir/src/imgui/backends/imgui_impl_opengl3.cpp.o.d
+build/*
+imgui-web-demo/*
+
+

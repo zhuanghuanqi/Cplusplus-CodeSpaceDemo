@@ -10,4 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # 添加可执行文件
 add_executable(helloworld main.cpp)
 
+# target_include_directories(helloworld PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
 # add_executable(helloworld2 main.cpp)

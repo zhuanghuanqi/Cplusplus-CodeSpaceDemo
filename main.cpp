@@ -55,10 +55,18 @@ public:
 
     ~Person() = default;
 
+    std::string FormatSex() const {
+        if (sex_ == 1) {
+            return "男";
+        } else {
+            return "女";
+        }
+    }
+
     friend std::ostream& operator<<(std::ostream& os, const Person& person) {
         os << "姓名: " << person.name_
             << "，年龄: " << person.age_
-            << "，性别: " << person.sex_
+            << "，性别: " << person.FormatSex()
             << "，电话: " << person.phone_
             << "，地址: " << person.address_;
 
@@ -143,13 +151,13 @@ public:
         std::string name, phone, address;
         int age, sex;
 
-        std::cout << "请输入姓名: " << std::endl;
+        std::cout << "请输入姓名: ";
         std::cin >> name;
 
-        std::cout << "请输入年龄: " << std::endl;
+        std::cout << "请输入年龄: ";
         std::cin >> age;
 
-        std::cout << "请输入性别(1: 男, 2: 女): " << std::endl;
+        std::cout << "请输入性别(1: 男, 2: 女): ";
 
         while (true) {
             std::cin >> sex;
@@ -157,14 +165,14 @@ public:
             if (sex == 1 || sex == 2) {
                 break;
             } else {
-                std::cout << "输入错误，请重新输入性别(1: 男, 2: 女): " << std::endl;
+                std::cout << "输入错误，请重新输入性别(1: 男, 2: 女): ";
             }
         }
 
-        std::cout << "请输入电话: " << std::endl;
+        std::cout << "请输入电话: ";
         std::cin >> phone;
         
-        std::cout << "请输入地址: " << std::endl;
+        std::cout << "请输入地址: ";
         std::cin >> address;
 
         return {name, age, sex, phone, address};
@@ -204,8 +212,13 @@ public:
     }
 
     void Remove() {
+        if (list_.Size() == 0) {
+            std::cout << "通讯录为空，无法删除联系人" << std::endl;
+            return;
+        }
+
         std::string name;
-        std::cout << "请输入要删除的联系人姓名: " << std::endl;
+        std::cout << "请输入要删除的联系人姓名: ";
         std::cin >> name;
 
         if (list_.RemovePerson(name)) {
@@ -216,8 +229,13 @@ public:
     }
 
     void Modify() {
+        if (list_.Size() == 0) {
+            std::cout << "通讯录为空，无法修改联系人" << std::endl;
+            return;
+        }
+
         std::string name;
-        std::cout << "请输入要修改的联系人姓名: " << std::endl;
+        std::cout << "请输入要修改的联系人姓名: ";
         std::cin >> name;
 
         auto res = list_.SearchPerson(name);
@@ -255,6 +273,11 @@ public:
     }
 
     void Search() {
+        if (list_.Size() == 0) {
+            std::cout << "通讯录为空，无法查找联系人" << std::endl;
+            return;
+        }
+
         std::string name;
         std::cout << "请输入要查找的联系人姓名: " << std::endl;
         std::cin >> name;
@@ -283,10 +306,10 @@ public:
             &ConsoleApp::Modify,
             &ConsoleApp::Clear
         };
-
+        
+        ShowMenu();
         while (true) {
-            ShowMenu();
-            std::cout << "请输入您的选择: " << std::endl;
+            std::cout << "请输入您的选择: ";
             std::cin >> choice;
 
             if (choice == 0) {

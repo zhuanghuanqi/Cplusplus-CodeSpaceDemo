@@ -16,10 +16,6 @@ public:
         : name_(name), age_(age), sex_(sex), phone_(phone), address_(address) {}
     
     Person(Person&& person) noexcept {
-        if (&person == this) {
-            return;
-        }
-
         name_ = std::move(person.name_);
         age_ = person.age_;
         sex_ = person.sex_;
